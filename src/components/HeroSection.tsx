@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Phone, Instagram, ChevronDown, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
+import profileImage from "@/assets/profile.jpg";
 
 const titles = [
   "Python Developer",
@@ -23,7 +24,7 @@ const socialLinks = [
   },
   {
     icon: Instagram,
-    href: "https://www.instagram.com/r_cod3r?igsh=ZHJjZ2lncm1uejNv",
+    href: "https://www.instagram.com/r_cod3r",
     label: "Instagram",
   },
   {
@@ -89,12 +90,21 @@ const HeroSection = () => {
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
 
       <div className="container-custom text-center z-10">
+        {/* Profile Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6"
         >
+          <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 relative">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent animate-spin-slow opacity-70 blur-sm" />
+            <img
+              src={profileImage}
+              alt="Muhammad Ul Hasnain"
+              className="w-full h-full rounded-full object-cover border-2 border-primary/50 relative z-10"
+            />
+          </div>
           <span className="code-font text-primary text-sm md:text-base tracking-wider">
             {"// Hello World, I am"}
           </span>
