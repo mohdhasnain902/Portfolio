@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const titles = [
   "Python Developer",
   "Trading Bot API Developer",
+  "Frontend Developer (React + Vite)",
   "Software Engineer",
   "Full Stack Developer",
 ];
@@ -30,10 +31,20 @@ const socialLinks = [
     href: "mailto:muhammadulhasnain@gmail.com",
     label: "Email",
   },
+];
+
+const secondaryLinks = [
   {
-    icon: Phone,
-    href: "tel:+923110569228",
-    label: "Phone",
+    label: "Fiverr",
+    href: "https://www.fiverr.com/users/h2zeee",
+  },
+  {
+    label: "Upwork",
+    href: "https://www.upwork.com/freelancers/~01737e30133e047738",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/923138489149",
   },
 ];
 
@@ -132,7 +143,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex items-center justify-center gap-4 mb-12"
+          className="flex items-center justify-center gap-4 mb-6"
         >
           {socialLinks.map((link, index) => (
             <motion.a
@@ -149,6 +160,31 @@ const HeroSection = () => {
               aria-label={link.label}
             >
               <link.icon size={22} />
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Secondary Links (Fiverr, Upwork, WhatsApp) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="flex items-center justify-center gap-3 mb-12 flex-wrap"
+        >
+          {secondaryLinks.map((link, index) => (
+            <motion.a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium glass-card border border-border/50 rounded-full text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.1 + index * 0.1 }}
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {link.label}
             </motion.a>
           ))}
         </motion.div>
