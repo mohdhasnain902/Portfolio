@@ -44,6 +44,10 @@ const secondaryLinks = [
     href: "https://www.upwork.com/freelancers/~01737e30133e047738",
   },
   {
+    label: "Contra",
+    href: "https://muhammadulhasnain6ttg2wkf.contra.com",
+  },
+  {
     label: "WhatsApp",
     href: "https://wa.me/923138489149",
   },
