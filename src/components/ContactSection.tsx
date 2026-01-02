@@ -9,6 +9,7 @@ import {
   Github,
   Linkedin,
   Instagram,
+  MessageCircle,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -49,6 +50,11 @@ const socialLinks = [
     icon: Instagram,
     href: "https://www.instagram.com/r_cod3r",
     label: "Instagram",
+  },
+  {
+    icon: MessageCircle,
+    href: "https://t.me/JosephCryll",
+    label: "Telegram",
   },
 ];
 
