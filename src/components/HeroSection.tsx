@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin, MessageCircle } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import profileImage from "@/assets/profile.jpg";
 
@@ -33,7 +33,7 @@ const socialLinks = [
     label: "Email",
   },
   {
-    icon: MessageCircle,
+    icon: Send,
     href: "https://t.me/JosephCryll",
     label: "Telegram",
   },
