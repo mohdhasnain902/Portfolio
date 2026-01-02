@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import profileImage from "@/assets/profile.jpg";
 
@@ -32,6 +32,11 @@ const socialLinks = [
     href: "mailto:muhammadulhasnain@gmail.com",
     label: "Email",
   },
+  {
+    icon: MessageCircle,
+    href: "https://t.me/JosephCryll",
+    label: "Telegram",
+  },
 ];
 
 const secondaryLinks = [
@@ -50,6 +55,10 @@ const secondaryLinks = [
   {
     label: "WhatsApp",
     href: "https://wa.me/923138489149",
+  },
+  {
+    label: "Telegram",
+    href: "https://t.me/JosephCryll",
   },
 ];
 
