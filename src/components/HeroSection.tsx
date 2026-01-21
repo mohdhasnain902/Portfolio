@@ -127,20 +127,11 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
         >
           <span className="text-foreground">Muhammad Ul</span>{" "}
           <span className="text-gradient glow-text">Hasnain</span>
         </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl md:text-2xl font-bold mb-4"
-        >
-          <span className="text-gradient glow-text">Full Stack Developer</span>
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
