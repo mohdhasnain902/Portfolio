@@ -7,7 +7,7 @@ const education = [
   {
     degree: "BS Software Engineering",
     institution: "Capital University of Science and Technology (CUST)",
-    location: "Islamabad",
+    location: "Islamabad, Pakistan",
     period: "Sep 2019 - Nov 2023",
     link: "https://cust.edu.pk/",
     grade: null,
@@ -15,7 +15,7 @@ const education = [
   {
     degree: "FSc Pre-Engineering",
     institution: "Punjab Group of Colleges",
-    location: "Lahore",
+    location: "Lahore, Pakistan",
     period: "2017 - 2018",
     link: null,
     grade: "707/1100",
@@ -23,7 +23,7 @@ const education = [
   {
     degree: "Matriculation",
     institution: "Uswa College",
-    location: "Chakwal, Dhudlal",
+    location: "Chakwal, Dhudlal, Pakistan",
     period: "2016 - 2017",
     link: null,
     grade: "964/1100",
