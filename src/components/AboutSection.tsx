@@ -56,8 +56,8 @@ const AboutSection = () => {
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p className="text-lg">
                 I'm a passionate{" "}
-                <span className="text-gradient font-bold">Full Stack Developer</span>,{" "}
-                <span className="text-primary font-medium">Python Developer</span>{" "}
+                <span className="text-primary font-medium">Software Engineer</span>,{" "}
+                <span className="text-primary font-medium">Full Stack Developer</span>{" "}
                 and{" "}
                 <span className="text-primary font-medium">
                   Trading Bot API Specialist
