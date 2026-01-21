@@ -6,18 +6,18 @@ import { Globe } from "lucide-react";
 const languages = [
   {
     name: "Persian",
-    level: "Native",
+    level: "Native / Mother Tongue",
     skills: { listening: 100, speaking: 100, reading: 100, writing: 100 },
   },
   {
     name: "English",
     level: "Proficient",
-    skills: { listening: 95, speaking: 80, reading: 80, writing: 90 },
+    skills: { listening: 100, speaking: 80, reading: 80, writing: 95 },
   },
   {
     name: "Urdu",
     level: "Proficient",
-    skills: { listening: 95, speaking: 90, reading: 90, writing: 95 },
+    skills: { listening: 95, speaking: 100, reading: 100, writing: 100 },
   },
 ];
 

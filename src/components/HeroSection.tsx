@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import profileImage from "@/assets/profile.jpg";
 
 const titles = [
-  "Python Developer",
-  "Trading Bot API Developer",
-  "Frontend Developer (React + Vite)",
-  "Software Engineer",
   "Full Stack Developer",
+  "Python Developer",
+  "Trading Bot API Specialist",
+  "AI Automation Developer",
+  "Software Engineer",
 ];
 
 const socialLinks = [

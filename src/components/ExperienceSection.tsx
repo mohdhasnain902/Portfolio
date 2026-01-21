@@ -1,71 +1,106 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, Calendar } from "lucide-react";
+import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 const experiences = [
   {
     title: "Trading Bot API Developer",
     company: "Fiverr",
+    location: "Islamabad, Pakistan",
     period: "May 2023 - Present",
     description:
-      "Developed APIs and automated trading strategies for cryptocurrency exchanges (Bybit, Binance, OKX). Specialized in TradingView indicator integration and custom strategy automation.",
-    tech: ["Python", "MySQL", "Django", "PostgreSQL", "REST API"],
+      "Developed APIs and automated trading strategies for leading cryptocurrency exchanges, including Bybit, Binance, OKX and many more. Specialized in integrating and automating TradingView indicators and strategies, along with custom strategy implementations.",
+    tech: ["Python", "MySQL", "Django", "PyCharm", "SQLite", "PostgreSQL", "REST API"],
+  },
+  {
+    title: "Web Developer",
+    company: "Al Nasr",
+    location: "Quetta, Pakistan",
+    period: "Sep 2025 - Nov 2026",
+    description:
+      "Implementation of the Frontend Design. Developing a full-fledge responsive website. Implementing features like Google Maps integration and many more.",
+    tech: ["HTML", "CSS", "JavaScript", "React"],
+  },
+  {
+    title: "Web Developer",
+    company: "Joseph",
+    location: "Melbourne, Australia",
+    period: "Dec 2025 - Jan 2026",
+    description:
+      "Created a Portfolio Website. Designed the UI/UX. Implemented all the social links and the work experience of the client. Deployed on a server.",
+    tech: ["HTML", "CSS", "JavaScript", "React", "Vite"],
+  },
+  {
+    title: "AI Automation and Backend Developer",
+    company: "Bocoh",
+    location: "Quetta, Pakistan",
+    period: "Feb 2025 - Aug 2025",
+    description:
+      "Development of a fully professional and standard backend structure for the website. Integrating AI with the website. Automating processes and flows. Development of APIs for the AI and frontend integration. Development of database and the whole system architecture. Handling JSON, files, images, user's data and many more.",
+    tech: ["Python", "AI Integration", "API Development", "Database Design"],
   },
   {
     title: "Python Developer",
     company: "Lion Software House",
+    location: "Islamabad, Pakistan",
     period: "Dec 2023 - Mar 2024",
     description:
-      "Built web scraping solutions using Selenium and Beautiful Soup. Automated data extraction processes with scalability focus and created comprehensive documentation.",
-    tech: ["Python", "Selenium", "Beautiful Soup", "Django", "Jupyter Notebook"],
+      "Developed a web scraping solution utilizing Selenium and Beautiful Soup to extract structured data from a website. Automated the entire process, optimizing efficiency and ensuring scalability for additional sources. Collaborated cross-functionally to align the scraping process with organizational goals. Provided comprehensive documentation. Demonstrated proficiency in Selenium and Beautiful Soup.",
+    tech: ["Python", "Selenium", "Beautiful Soup", "requests", "Django", "PyCharm", "Jupyter Notebook"],
   },
   {
-    title: "Software Engineer",
-    company: "Final Year Project",
+    title: "Software Engineer - Final Year Project",
+    company: "Smart Traffic Optimization for Emergency Vehicles",
+    location: "Islamabad, Pakistan",
     period: "Sep 2022 - Jun 2023",
     description:
-      "Smart Traffic Optimization for Emergency Vehicles - Desktop application using AI to detect emergency vehicles and automated traffic signal control for priority passage.",
-    tech: ["Python", "YOLOv5", "Machine Learning", "PyCharm"],
+      "Created a desktop application to detect emergency vehicles with AI like ambulances, fire brigades etc. Provided them way by changing the signals so they can reach their destination on time.",
+    tech: ["Python", "YOLOv5", "Machine Learning", "PyCharm", "Custom Web Scraper"],
   },
   {
-    title: "Computer Hardware Programmer",
-    company: "IoT Project",
+    title: "Computer Hardware Programmer - IoT Project",
+    company: "Smart Hand Sanitizer",
+    location: "Islamabad, Pakistan",
     period: "Sep 2022 - Feb 2023",
     description:
-      "Smart Hand Sanitizer - Automated sanitizer dispenser using proximity detection with Arduino and ultrasonic sensors.",
-    tech: ["C++", "Arduino IDE", "Ultrasonic Sensors"],
+      "Created the system using Arduino board, Ultrasonic sensors, and Arduino motors to automate the sanitizer pouring whenever a hand reaches the specified distance.",
+    tech: ["C++", "Arduino IDE"],
   },
   {
-    title: "Game Developer",
-    company: "Self Project",
+    title: "Game Developer (Unity)",
+    company: "Self",
+    location: "Islamabad, Pakistan",
     period: "May 2022 - Sep 2022",
     description:
-      "Created simulation game in Unity with custom characters. Designed multiple game levels with varying difficulty.",
+      "Created an eye-catching simulation game in Unity. Created custom characters along with game levels with different difficulty.",
     tech: ["C++", "Unity"],
   },
   {
     title: "Blockchain Developer",
-    company: "Project",
+    company: "Blockchain Transaction System",
+    location: "Islamabad, Pakistan",
     period: "Mar 2022 - Jul 2022",
     description:
-      "Built blockchain-based transaction system for secure, transparent transactions using Ethereum technologies.",
+      "Built a comprehensive Blockchain-based transaction system using Ganache, Truffle and Remix IDE for secure and transparent transactions.",
     tech: ["Solidity", "Truffle", "Ganache", "Ethereum Remix IDE"],
   },
   {
     title: "Software Architect",
-    company: "Semester Project",
+    company: "Travel Management System",
+    location: "Islamabad, Pakistan",
     period: "Sep 2021 - Jan 2022",
     description:
-      "Designed and developed complete travel management system with full-stack development including backend and frontend.",
+      "Designed Software Architecture of a travel management system with proper architecture practices. Developed the whole project including Backend and Frontend.",
     tech: ["Java", "Enterprise Architect", "NetBeans"],
   },
   {
-    title: "Programmer",
-    company: "Semester Project",
+    title: "C++ Developer",
+    company: "School Management System",
+    location: "Islamabad, Pakistan",
     period: "Mar 2021 - Jun 2021",
     description:
-      "Built comprehensive School Management System backend implementing OOP concepts, dependencies, and limitations.",
+      "Built a comprehensive and fully functional School Management System backend with optimal concepts practiced including dependencies, limitations, OOP, etc.",
     tech: ["C++", "Visual Studio"],
   },
 ];
@@ -120,7 +155,7 @@ const ExperienceSection = () => {
                     className="glass-card-hover p-6"
                   >
                     <div
-                      className={`flex items-center gap-2 mb-3 ${
+                      className={`flex items-center gap-2 mb-2 ${
                         index % 2 === 0 ? "md:justify-end" : ""
                       }`}
                     >
@@ -133,6 +168,15 @@ const ExperienceSection = () => {
                     <h3 className="text-xl font-bold text-foreground mb-2">
                       {exp.title}
                     </h3>
+
+                    <div
+                      className={`flex items-center gap-2 text-muted-foreground text-sm mb-2 ${
+                        index % 2 === 0 ? "md:justify-end" : ""
+                      }`}
+                    >
+                      <MapPin size={14} />
+                      <span>{exp.location}</span>
+                    </div>
 
                     <div
                       className={`flex items-center gap-2 text-muted-foreground text-sm mb-4 ${
