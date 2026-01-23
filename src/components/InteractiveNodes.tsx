@@ -130,23 +130,7 @@ const InteractiveNodes = () => {
       ctx.fill();
     });
 
-    // Draw cursor node if active with glow
-    if (mouse.active) {
-      // Outer glow
-      ctx.beginPath();
-      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, NODE_SIZE * 3);
-      gradient.addColorStop(0, `rgba(0, 212, 170, 0.4)`);
-      gradient.addColorStop(1, `rgba(0, 212, 170, 0)`);
-      ctx.fillStyle = gradient;
-      ctx.arc(mouse.x, mouse.y, NODE_SIZE * 3, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Core
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(0, 212, 170, 0.6)`;
-      ctx.arc(mouse.x, mouse.y, NODE_SIZE / 2, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    // Cursor node removed - only connections to cursor remain
 
     animationRef.current = requestAnimationFrame(animate);
   }, []);

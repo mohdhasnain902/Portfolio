@@ -46,8 +46,8 @@ const EducationSection = () => {
           <span className="code-font text-primary text-sm tracking-wider">
             {"// Education"}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
-            Academic <span className="text-gradient">Background</span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
+            Academic Background
           </h2>
         </motion.div>
 

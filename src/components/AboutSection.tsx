@@ -42,8 +42,8 @@ const AboutSection = () => {
           <span className="code-font text-primary text-sm tracking-wider">
             {"// About Me"}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
-            Who <span className="text-gradient">I Am</span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
+            Who I Am
           </h2>
         </motion.div>
 
