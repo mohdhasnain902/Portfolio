@@ -14,20 +14,11 @@ const InteractiveNodes = () => {
   const animationRef = useRef<number>();
   const lastNodeTimeRef = useRef(0);
 
-  const NODE_LIFETIME = 2000;
-  const MAX_NODES = 20;
-  const NODE_SIZE = 4;
-  const CONNECTION_DISTANCE = 150;
-  const NODE_SPAWN_INTERVAL = 100;
-
-  const getThemeColor = useCallback(() => {
-    // Using existing theme colors at low opacity
-    return {
-      node: "rgba(0, 240, 255, 0.12)",
-      line: "rgba(0, 240, 255, 0.08)",
-      nodeHighlight: "rgba(0, 212, 170, 0.15)",
-    };
-  }, []);
+  const NODE_LIFETIME = 2500;
+  const MAX_NODES = 25;
+  const NODE_SIZE = 5;
+  const CONNECTION_DISTANCE = 200;
+  const NODE_SPAWN_INTERVAL = 80;
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -43,9 +34,9 @@ const InteractiveNodes = () => {
     
     lastNodeTimeRef.current = now;
     
-    // Add slight randomness to position
-    const offsetX = (Math.random() - 0.5) * 40;
-    const offsetY = (Math.random() - 0.5) * 40;
+    // Add more spread to position
+    const offsetX = (Math.random() - 0.5) * 100;
+    const offsetY = (Math.random() - 0.5) * 100;
     
     nodesRef.current.push({
       x: x + offsetX,
@@ -66,7 +57,6 @@ const InteractiveNodes = () => {
     if (!canvas || !ctx) return;
 
     const now = Date.now();
-    const colors = getThemeColor();
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -91,10 +81,10 @@ const InteractiveNodes = () => {
 
         if (distance < CONNECTION_DISTANCE) {
           const opacity = (1 - distance / CONNECTION_DISTANCE) * 
-                         Math.min(nodes[i].opacity, nodes[j].opacity) * 0.5;
+                         Math.min(nodes[i].opacity, nodes[j].opacity) * 0.6;
           
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(0, 240, 255, ${opacity * 0.1})`;
+          ctx.strokeStyle = `rgba(0, 240, 255, ${opacity * 0.25})`;
           ctx.lineWidth = 1;
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -108,13 +98,13 @@ const InteractiveNodes = () => {
         const dy = nodes[i].y - mouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < CONNECTION_DISTANCE * 1.2) {
-          const opacity = (1 - distance / (CONNECTION_DISTANCE * 1.2)) * 
-                         nodes[i].opacity * 0.6;
+        if (distance < CONNECTION_DISTANCE * 1.5) {
+          const opacity = (1 - distance / (CONNECTION_DISTANCE * 1.5)) * 
+                         nodes[i].opacity * 0.7;
           
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(0, 212, 170, ${opacity * 0.12})`;
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(0, 212, 170, ${opacity * 0.3})`;
+          ctx.lineWidth = 1.5;
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.stroke();
@@ -122,24 +112,44 @@ const InteractiveNodes = () => {
       }
     }
 
-    // Draw nodes
+    // Draw nodes with glow effect
     nodes.forEach((node) => {
+      // Outer glow
       ctx.beginPath();
-      ctx.fillStyle = `rgba(0, 240, 255, ${node.opacity * 0.12})`;
+      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, NODE_SIZE * 2);
+      gradient.addColorStop(0, `rgba(0, 240, 255, ${node.opacity * 0.3})`);
+      gradient.addColorStop(1, `rgba(0, 240, 255, 0)`);
+      ctx.fillStyle = gradient;
+      ctx.arc(node.x, node.y, NODE_SIZE * 2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Core node
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(0, 240, 255, ${node.opacity * 0.5})`;
       ctx.arc(node.x, node.y, NODE_SIZE / 2, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    // Draw cursor node if active
+    // Draw cursor node if active with glow
     if (mouse.active) {
+      // Outer glow
       ctx.beginPath();
-      ctx.fillStyle = colors.nodeHighlight;
+      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, NODE_SIZE * 3);
+      gradient.addColorStop(0, `rgba(0, 212, 170, 0.4)`);
+      gradient.addColorStop(1, `rgba(0, 212, 170, 0)`);
+      ctx.fillStyle = gradient;
+      ctx.arc(mouse.x, mouse.y, NODE_SIZE * 3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Core
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(0, 212, 170, 0.6)`;
       ctx.arc(mouse.x, mouse.y, NODE_SIZE / 2, 0, Math.PI * 2);
       ctx.fill();
     }
 
     animationRef.current = requestAnimationFrame(animate);
-  }, [getThemeColor]);
+  }, []);
 
   useEffect(() => {
     resizeCanvas();
