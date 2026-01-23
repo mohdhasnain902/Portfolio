@@ -169,23 +169,29 @@ const ExperienceSection = () => {
   }, []);
 
   return (
-    <section id="experience" className="section-padding relative" ref={ref}>
-      {/* Decorative blob gradient in center */}
+    <section id="experience" className="section-padding relative overflow-hidden" ref={ref}>
+      {/* Background gradient orbs - matching Hero section style */}
+      <div className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-primary/15 rounded-full blur-3xl animate-float pointer-events-none" />
+      <div className="absolute top-1/2 -right-48 w-[450px] h-[450px] bg-accent/15 rounded-full blur-3xl animate-float-delayed pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+      
+      {/* Central decorative blob gradient */}
       <div 
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block"
         style={{ zIndex: 0 }}
       >
         <svg 
-          width="600" 
-          height="600" 
+          width="700" 
+          height="700" 
           viewBox="0 0 600 600" 
-          className="opacity-[0.15]"
-          style={{ filter: "blur(60px)" }}
+          className="opacity-[0.12]"
+          style={{ filter: "blur(80px)" }}
         >
           <defs>
             <radialGradient id="blobGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
-              <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="1" />
+              <stop offset="40%" stopColor="hsl(var(--accent))" stopOpacity="0.5" />
               <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
             </radialGradient>
           </defs>
