@@ -117,8 +117,8 @@ const ContactSection = () => {
           <span className="code-font text-primary text-sm tracking-wider">
             {"// Contact"}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
-            Let's <span className="text-gradient">Connect</span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
+            Let's Connect
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach

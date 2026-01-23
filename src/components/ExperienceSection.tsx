@@ -212,8 +212,8 @@ const ExperienceSection = () => {
           <span className="code-font text-primary text-sm tracking-wider">
             {"// Experience"}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
-            Work <span className="text-gradient">Journey</span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
+            Work Journey
           </h2>
         </motion.div>
 

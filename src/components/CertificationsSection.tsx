@@ -51,8 +51,8 @@ const CertificationsSection = () => {
           <span className="code-font text-primary text-sm tracking-wider">
             {"// Certifications"}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
-            Professional <span className="text-gradient">Credentials</span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
+            Professional Credentials
           </h2>
         </motion.div>
 

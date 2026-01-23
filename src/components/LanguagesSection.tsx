@@ -37,8 +37,8 @@ const LanguagesSection = () => {
           <span className="code-font text-primary text-sm tracking-wider">
             {"// Languages"}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6">
-            Language <span className="text-gradient">Proficiency</span>
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
+            Language Proficiency
           </h2>
         </motion.div>
 
