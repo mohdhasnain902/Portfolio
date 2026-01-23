@@ -1,7 +1,38 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
+
+// Staggered entrance animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 40,
+    scale: 0.95,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+      duration: 0.6,
+    },
+  },
+};
 
 const experiences = [
   {
@@ -109,9 +140,63 @@ const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Generate organic blob path for the decorative gradient
+  const blobPath = useMemo(() => {
+    const points = 8;
+    const angleStep = (Math.PI * 2) / points;
+    const radius = 300;
+    
+    let path = "";
+    for (let i = 0; i <= points; i++) {
+      const angle = i * angleStep;
+      const variation = 0.7 + Math.random() * 0.6;
+      const r = radius * variation;
+      const x = 300 + Math.cos(angle) * r;
+      const y = 300 + Math.sin(angle) * r;
+      
+      if (i === 0) {
+        path += `M ${x} ${y}`;
+      } else {
+        const prevAngle = (i - 1) * angleStep;
+        const prevVariation = 0.7 + Math.sin(i * 1.5) * 0.3;
+        const prevR = radius * prevVariation;
+        const cpx1 = 300 + Math.cos(prevAngle + angleStep * 0.5) * (prevR + r) * 0.5;
+        const cpy1 = 300 + Math.sin(prevAngle + angleStep * 0.5) * (prevR + r) * 0.5;
+        path += ` Q ${cpx1} ${cpy1} ${x} ${y}`;
+      }
+    }
+    return path + " Z";
+  }, []);
+
   return (
     <section id="experience" className="section-padding relative" ref={ref}>
-      <div className="container-custom">
+      {/* Decorative blob gradient in center */}
+      <div 
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block"
+        style={{ zIndex: 0 }}
+      >
+        <svg 
+          width="600" 
+          height="600" 
+          viewBox="0 0 600 600" 
+          className="opacity-[0.15]"
+          style={{ filter: "blur(60px)" }}
+        >
+          <defs>
+            <radialGradient id="blobGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
+              <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <path 
+            d={blobPath}
+            fill="url(#blobGradient)"
+          />
+        </svg>
+      </div>
+
+      <div className="container-custom relative" style={{ zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -130,19 +215,27 @@ const ExperienceSection = () => {
           {/* Timeline line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent md:-translate-x-1/2" />
 
-          <div className="space-y-8">
+          <motion.div 
+            className="space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={itemVariants}
                 className={`relative flex flex-col md:flex-row ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full md:-translate-x-1/2 mt-6 z-10 animate-glow-pulse" />
+                <motion.div 
+                  className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full md:-translate-x-1/2 mt-6 z-10 animate-glow-pulse"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}
+                />
 
                 {/* Content */}
                 <div
@@ -209,7 +302,7 @@ const ExperienceSection = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
