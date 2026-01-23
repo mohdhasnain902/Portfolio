@@ -16,80 +16,88 @@ const ParticlesBackground = () => {
   if (!init) return null;
 
   return (
-    <Particles
-      id="tsparticles"
-      options={{
-        fullScreen: {
-          enable: true,
-          zIndex: -1,
-        },
-        background: {
-          color: {
-            value: "transparent",
+    <div 
+      className="fixed inset-0 pointer-events-none"
+      style={{ zIndex: 0 }}
+    >
+      <Particles
+        id="tsparticles"
+        options={{
+          fullScreen: {
+            enable: false,
           },
-        },
-        fpsLimit: 60,
-        particles: {
-          color: {
-            value: ["#00f0ff", "#00d4aa"],
-          },
-          links: {
-            color: "#00f0ff",
-            distance: 150,
-            enable: true,
-            opacity: 0.15,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            direction: "none",
-            outModes: {
-              default: "bounce",
+          background: {
+            color: {
+              value: "transparent",
             },
-            random: true,
-            speed: 0.8,
-            straight: false,
           },
-          number: {
-            density: {
+          fpsLimit: 30,
+          particles: {
+            color: {
+              value: "#ffffff",
+            },
+            links: {
+              color: "#ffffff",
+              distance: 120,
               enable: true,
+              opacity: 0.08,
+              width: 0.5,
             },
-            value: 60,
-          },
-          opacity: {
-            value: { min: 0.1, max: 0.4 },
-            animation: {
+            move: {
               enable: true,
-              speed: 0.5,
-              sync: false,
+              direction: "none",
+              outModes: {
+                default: "out",
+              },
+              random: false,
+              speed: 0.3,
+              straight: false,
+              attract: {
+                enable: false,
+              },
+            },
+            number: {
+              density: {
+                enable: true,
+                width: 1920,
+                height: 1080,
+              },
+              value: 50,
+            },
+            opacity: {
+              value: 0.15,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              value: { min: 1, max: 2 },
             },
           },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 3 },
-          },
-        },
-        detectRetina: true,
-        interactivity: {
-          events: {
-            onHover: {
-              enable: true,
-              mode: "grab",
+          detectRetina: true,
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+              resize: {
+                enable: true,
+              },
             },
-          },
-          modes: {
-            grab: {
-              distance: 140,
-              links: {
-                opacity: 0.4,
+            modes: {
+              repulse: {
+                distance: 80,
+                duration: 0.8,
+                speed: 0.2,
+                factor: 50,
               },
             },
           },
-        },
-      }}
-    />
+        }}
+        className="w-full h-full"
+      />
+    </div>
   );
 };
 
