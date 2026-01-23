@@ -1,4 +1,5 @@
 import ParticlesBackground from "@/components/ParticlesBackground";
+import InteractiveNodes from "@/components/InteractiveNodes";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -14,6 +15,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <ParticlesBackground />
+      <InteractiveNodes />
       <Navigation />
       <main>
         <HeroSection />
