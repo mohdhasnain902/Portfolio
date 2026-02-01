@@ -144,12 +144,35 @@ const InteractiveNodes = () => {
       addNode(e.clientX, e.clientY);
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouseRef.current = { x: touch.clientX, y: touch.clientY, active: true };
+        addNode(touch.clientX, touch.clientY);
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouseRef.current = { x: touch.clientX, y: touch.clientY, active: true };
+        addNode(touch.clientX, touch.clientY);
+      }
+    };
+
     const handleMouseLeave = () => {
+      mouseRef.current.active = false;
+    };
+
+    const handleTouchEnd = () => {
       mouseRef.current.active = false;
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd);
 
     animationRef.current = requestAnimationFrame(animate);
 
@@ -157,6 +180,9 @@ const InteractiveNodes = () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
