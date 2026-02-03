@@ -68,11 +68,31 @@ const Navigation = () => {
         <motion.a
           href="#home"
           onClick={(e) => handleNavClick(e, navLinks[0])}
-          className="text-xl font-bold text-gradient"
+          className="flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {"<MUH />"}
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 100 100" 
+            className="w-10 h-10"
+          >
+            <rect width="100" height="100" rx="20" className="fill-background" />
+            <path 
+              d="M 22 78 L 22 22 L 50 52 L 78 22 L 78 78"
+              fill="none"
+              className="stroke-primary"
+              strokeWidth="8"
+              strokeLinejoin="miter"
+              strokeLinecap="butt"
+            />
+            <line 
+              x1="22" y1="55" x2="78" y2="55"
+              className="stroke-primary"
+              strokeWidth="8"
+              strokeLinecap="butt"
+            />
+          </svg>
         </motion.a>
 
         {/* Desktop Navigation */}
