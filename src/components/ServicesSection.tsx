@@ -169,29 +169,48 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
     },
   },
+};
+
+const featureVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: i * 0.1, duration: 0.3 },
+  }),
 };
 
 const ServicesSection = () => {
   return (
     <section id="services" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+      {/* Animated Background Elements */}
+      <motion.div
+        className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.15, 0.1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl" />
 
       <div className="container-custom relative z-10">
@@ -217,24 +236,32 @@ const ServicesSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
+              whileHover={{ scale: 1.03, y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="group relative"
             >
-              <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden hover:border-primary/50 transition-all duration-500">
+              <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)]">
                 {/* Background glow effect */}
                 <div
                   className={`absolute top-0 right-0 w-48 h-48 ${service.bgGlow} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 />
 
+                {/* Animated border glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ boxShadow: "inset 0 0 20px hsl(var(--primary) / 0.08)" }}
+                />
+
                 {/* Icon with gradient background */}
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileHover={{ scale: 1.15, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                   className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-5 shadow-lg`}
                 >
                   <service.icon size={28} className="text-foreground" />
@@ -253,21 +280,23 @@ const ServicesSection = () => {
                   {service.description}
                 </p>
 
-                {/* Features */}
+                {/* Features with stagger animation */}
                 <div className="mb-4">
                   <h4 className="text-xs font-semibold text-foreground mb-2 flex items-center gap-1.5">
                     <Sparkles size={12} className="text-primary" />
                     Key Features
                   </h4>
                   <ul className="grid grid-cols-1 gap-1.5">
-                    {service.features.slice(0, 3).map((feature) => (
-                      <li
+                    {service.features.slice(0, 3).map((feature, i) => (
+                      <motion.li
                         key={feature}
+                        custom={i}
+                        variants={featureVariants}
                         className="flex items-center gap-1.5 text-xs text-muted-foreground"
                       >
                         <Zap size={10} className="text-primary flex-shrink-0" />
                         {feature}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
@@ -278,7 +307,7 @@ const ServicesSection = () => {
                     {service.technologies.slice(0, 4).map((item) => (
                       <span
                         key={item}
-                        className="px-2 py-0.5 text-[10px] font-medium glass-card rounded-full text-primary border border-primary/30"
+                        className="px-2 py-0.5 text-[10px] font-medium glass-card rounded-full text-primary border border-primary/30 transition-colors duration-300 hover:bg-primary/10"
                       >
                         {item}
                       </span>
@@ -302,7 +331,7 @@ const ServicesSection = () => {
                 </motion.a>
 
                 {/* Decorative element */}
-                <div className="absolute bottom-2 right-2 opacity-5 group-hover:opacity-10 transition-opacity">
+                <div className="absolute bottom-2 right-2 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                   <service.icon size={80} className="text-primary" />
                 </div>
               </div>
