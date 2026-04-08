@@ -105,15 +105,14 @@ const ScrollAnimations = () => {
         });
       });
 
-      // --- Hero parallax text layers ---
+      // --- Hero parallax text layers (very subtle) ---
       const heroTitle = document.querySelector("[data-hero-title]");
       const heroSubtitle = document.querySelector("[data-hero-subtitle]");
-      const heroImage = document.querySelector("[data-hero-image]");
 
       if (heroTitle) {
         gsap.to(heroTitle, {
-          yPercent: -60,
-          opacity: 0.3,
+          yPercent: -20,
+          opacity: 0.6,
           ease: "none",
           scrollTrigger: {
             trigger: "#home",
@@ -126,22 +125,8 @@ const ScrollAnimations = () => {
 
       if (heroSubtitle) {
         gsap.to(heroSubtitle, {
-          yPercent: -30,
-          opacity: 0.5,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#home",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
-
-      if (heroImage) {
-        gsap.to(heroImage, {
-          yPercent: -15,
-          scale: 0.9,
+          yPercent: -10,
+          opacity: 0.7,
           ease: "none",
           scrollTrigger: {
             trigger: "#home",
