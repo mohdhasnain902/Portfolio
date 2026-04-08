@@ -25,65 +25,60 @@ const ScrollAnimations = () => {
         });
       });
 
-      // --- Section 3D perspective reveals ---
+      // --- Section subtle fade-in reveals (no 3D tilt) ---
       gsap.utils.toArray<HTMLElement>("[data-scroll-section]").forEach((section) => {
-        // Subtle 3D tilt on scroll
         gsap.fromTo(
           section,
-          { rotateX: 2, scale: 0.98, opacity: 0.8 },
+          { opacity: 0.85, y: 30 },
           {
-            rotateX: 0,
-            scale: 1,
             opacity: 1,
+            y: 0,
             ease: "power2.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
-              end: "top 30%",
-              scrub: 0.5,
+              start: "top 90%",
+              end: "top 40%",
+              scrub: 1,
             },
           }
         );
       });
 
-      // --- Depth emergence for cards ---
+      // --- Depth emergence for cards (subtle) ---
       gsap.utils.toArray<HTMLElement>("[data-depth-card]").forEach((card, i) => {
         gsap.fromTo(
           card,
-          { scale: 0.85, opacity: 0, filter: "blur(8px)", y: 60 },
+          { opacity: 0, y: 40 },
           {
-            scale: 1,
             opacity: 1,
-            filter: "blur(0px)",
             y: 0,
             duration: 0.8,
-            ease: "power3.out",
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
               start: "top 90%",
-              end: "top 50%",
+              end: "top 60%",
               toggleActions: "play none none none",
             },
-            delay: (i % 3) * 0.1,
+            delay: (i % 3) * 0.08,
           }
         );
       });
 
-      // --- Staggered slide-in for horizontal cards ---
+      // --- Staggered slide-in for cards (subtle) ---
       gsap.utils.toArray<HTMLElement>("[data-slide-card]").forEach((card, i) => {
-        const direction = i % 2 === 0 ? -80 : 80;
+        const direction = i % 2 === 0 ? -30 : 30;
         gsap.fromTo(
           card,
-          { x: direction, opacity: 0, rotateY: direction > 0 ? -5 : 5 },
+          { x: direction, opacity: 0 },
           {
             x: 0,
             opacity: 1,
-            rotateY: 0,
-            duration: 0.8,
-            ease: "power3.out",
+            duration: 0.7,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 85%",
+              start: "top 88%",
               toggleActions: "play none none none",
             },
           }
