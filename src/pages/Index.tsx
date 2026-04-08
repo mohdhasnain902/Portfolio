@@ -24,28 +24,28 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <AboutSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <ServicesSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <ExperienceSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <SkillsSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <EducationSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <CertificationsSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <LanguagesSection />
         </div>
-        <div data-scroll-section style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
+        <div data-scroll-section>
           <ContactSection />
         </div>
       </main>

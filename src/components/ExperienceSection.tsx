@@ -9,8 +9,8 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 100, damping: 15, duration: 0.6 } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
 };
 
 const experiences = [
@@ -109,7 +109,7 @@ const ExperienceSection = () => {
                 />
 
                 <div className={`ml-10 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <motion.div whileHover={{ scale: 1.02, y: -5 }} className="glass-card-hover p-6">
+                  <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.3 }} className="glass-card-hover p-6">
                     <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
                       <Briefcase size={18} className="text-primary" />
                       <span className="text-primary font-medium">{exp.company}</span>
