@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   Mail,
@@ -13,6 +12,7 @@ import {
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import MagneticWrapper from "./MagneticWrapper";
 
 const contactInfo = [
   {
@@ -59,8 +59,6 @@ const socialLinks = [
 ];
 
 const ContactSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -102,16 +100,16 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative" ref={ref}>
-      {/* Background decorations */}
+    <section id="contact" className="section-padding relative">
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-16"
         >
           <span className="code-font text-primary text-sm tracking-wider">
@@ -130,8 +128,9 @@ const ContactSection = () => {
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h3 className="text-2xl font-bold text-foreground mb-8">
               Get in Touch
@@ -142,8 +141,9 @@ const ContactSection = () => {
                 <motion.div
                   key={item.label}
                   initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                   className="flex items-center gap-4"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -171,21 +171,23 @@ const ContactSection = () => {
             </h4>
             <div className="flex gap-4">
               {socialLinks.map((link, index) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 glass-card-hover rounded-xl text-muted-foreground hover:text-primary"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={link.label}
-                >
-                  <link.icon size={22} />
-                </motion.a>
+                <MagneticWrapper key={link.label} strength={0.4}>
+                  <motion.a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 glass-card-hover rounded-xl text-muted-foreground hover:text-primary block"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + index * 0.1 }}
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label={link.label}
+                  >
+                    <link.icon size={22} />
+                  </motion.a>
+                </MagneticWrapper>
               ))}
             </div>
           </motion.div>
@@ -194,8 +196,9 @@ const ContactSection = () => {
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="glass-card p-8"
           >
             <div className="space-y-6">
@@ -259,22 +262,24 @@ const ContactSection = () => {
                 />
               </div>
 
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-primary text-primary-foreground font-semibold rounded-xl btn-glow flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {isSubmitting ? (
-                  <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                ) : (
-                  <>
-                    <Send size={18} />
-                    Send Message
-                  </>
-                )}
-              </motion.button>
+              <MagneticWrapper strength={0.2}>
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 px-8 bg-primary text-primary-foreground font-semibold rounded-xl btn-glow flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed text-base"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {isSubmitting ? (
+                    <div className="w-6 h-6 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <Send size={20} />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </motion.button>
+              </MagneticWrapper>
             </div>
           </motion.form>
         </div>

@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 const skillCategories = [
   {
@@ -51,35 +49,32 @@ const skillCategories = [
   },
 ];
 
-const SkillsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
     },
-  };
+  },
+};
 
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
-  };
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 },
+};
 
+const SkillsSection = () => {
   return (
-    <section id="skills" className="section-padding relative" ref={ref}>
-      {/* Background glow */}
+    <section id="skills" className="section-padding relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-16"
         >
           <span className="code-font text-primary text-sm tracking-wider">
@@ -95,8 +90,9 @@ const SkillsSection = () => {
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.8, delay: catIndex * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-3">
                 <span className="w-8 h-px bg-primary" />
@@ -105,7 +101,8 @@ const SkillsSection = () => {
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                whileInView="visible"
+                viewport={{ once: true }}
                 className="flex flex-wrap gap-3"
               >
                 {category.skills.map((skill, skillIndex) => (
@@ -118,7 +115,7 @@ const SkillsSection = () => {
                       boxShadow: "0 0 20px hsl(var(--primary) / 0.4)",
                     }}
                     transition={{
-                      delay: catIndex * 0.1 + skillIndex * 0.05,
+                      delay: catIndex * 0.05 + skillIndex * 0.03,
                     }}
                     className="skill-tag cursor-default"
                   >

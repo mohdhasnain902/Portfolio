@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { Award, ExternalLink, Calendar } from "lucide-react";
 
 const certifications = [
@@ -33,19 +31,16 @@ const certifications = [
 ];
 
 const CertificationsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section id="certifications" className="section-padding relative" ref={ref}>
-      {/* Background decoration */}
+    <section id="certifications" className="section-padding relative">
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-16"
         >
           <span className="code-font text-primary text-sm tracking-wider">
@@ -64,17 +59,18 @@ const CertificationsSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 1.0, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="glass-card-hover p-6 group cursor-pointer block"
+              className="glass-card-hover p-6 group cursor-pointer block h-full"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 h-full">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                   <Award className="text-primary" size={28} />
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                       {cert.title}
@@ -95,7 +91,7 @@ const CertificationsSection = () => {
                     </p>
                   )}
 
-                  <div className="flex items-center gap-2 text-muted-foreground text-sm mt-3">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm mt-auto pt-3">
                     <Calendar size={14} />
                     <span>{cert.date}</span>
                   </div>
