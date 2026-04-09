@@ -2,13 +2,28 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code2, Bot, Database, Zap } from "lucide-react";
-import TiltCard from "@/components/TiltCard";
 
 const highlights = [
-  { icon: Bot, title: "Trading Bot Expert", description: "Specialized in Bybit, Binance, OKX APIs" },
-  { icon: Code2, title: "Python Developer", description: "Django, Web Scraping, Automation" },
-  { icon: Database, title: "Full Stack", description: "PostgreSQL, MySQL, REST APIs" },
-  { icon: Zap, title: "Quick Learner", description: "Blockchain, IoT, Machine Learning" },
+  {
+    icon: Bot,
+    title: "Trading Bot Expert",
+    description: "Specialized in Bybit, Binance, OKX APIs",
+  },
+  {
+    icon: Code2,
+    title: "Python Developer",
+    description: "Django, Web Scraping, Automation",
+  },
+  {
+    icon: Database,
+    title: "Full Stack",
+    description: "PostgreSQL, MySQL, REST APIs",
+  },
+  {
+    icon: Zap,
+    title: "Quick Learner",
+    description: "Blockchain, IoT, Machine Learning",
+  },
 ];
 
 const AboutSection = () => {
@@ -24,7 +39,7 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span data-char-reveal className="code-font text-primary text-sm tracking-wider">
+          <span className="code-font text-primary text-sm tracking-wider">
             {"// About Me"}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-6 text-gradient">
@@ -44,7 +59,9 @@ const AboutSection = () => {
                 <span className="text-primary font-medium">Software Engineer</span>,{" "}
                 <span className="text-primary font-medium">Full Stack Developer</span>{" "}
                 and{" "}
-                <span className="text-primary font-medium">Trading Bot API Specialist</span>{" "}
+                <span className="text-primary font-medium">
+                  Trading Bot API Specialist
+                </span>{" "}
                 based in Islamabad, Pakistan. With expertise in cryptocurrency
                 exchange automation, I help traders and businesses automate their
                 trading strategies on platforms like Bybit, Binance, and OKX.
@@ -73,21 +90,24 @@ const AboutSection = () => {
             className="grid grid-cols-2 gap-4"
           >
             {highlights.map((item, index) => (
-              <TiltCard key={item.title} className="group" maxTilt={8} glare>
-                <motion.div
-                  data-depth-card
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                  className="glass-card-hover p-6 text-center relative overflow-hidden"
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <item.icon className="text-primary" size={24} />
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </motion.div>
-              </TiltCard>
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="glass-card-hover p-6 text-center"
+              >
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <item.icon className="text-primary" size={24} />
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {item.description}
+                </p>
+              </motion.div>
             ))}
           </motion.div>
         </div>

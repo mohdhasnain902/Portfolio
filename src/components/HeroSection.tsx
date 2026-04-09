@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import profileImage from "@/assets/profile.jpg";
-import MagneticButton from "@/components/MagneticButton";
 
 const titles = [
   "Full Stack Developer",
@@ -13,19 +12,54 @@ const titles = [
 ];
 
 const socialLinks = [
-  { icon: Linkedin, href: "https://www.linkedin.com/in/muhammad-ul-hasnain-1b4b951a0/", label: "LinkedIn" },
-  { icon: Github, href: "https://github.com/MuhammadUlHasnain", label: "GitHub" },
-  { icon: Instagram, href: "https://www.instagram.com/r_cod3r", label: "Instagram" },
-  { icon: Mail, href: "mailto:muhammadulhasnain@gmail.com", label: "Email" },
-  { icon: Send, href: "https://t.me/JosephCryll", label: "Telegram" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/muhammad-ul-hasnain-1b4b951a0/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Github,
+    href: "https://github.com/MuhammadUlHasnain",
+    label: "GitHub",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/r_cod3r",
+    label: "Instagram",
+  },
+  {
+    icon: Mail,
+    href: "mailto:muhammadulhasnain@gmail.com",
+    label: "Email",
+  },
+  {
+    icon: Send,
+    href: "https://t.me/JosephCryll",
+    label: "Telegram",
+  },
 ];
 
 const secondaryLinks = [
-  { label: "Fiverr", href: "https://www.fiverr.com/users/h2zeee" },
-  { label: "Upwork", href: "https://www.upwork.com/freelancers/~01737e30133e047738" },
-  { label: "Contra", href: "https://muhammadulhasnain6ttg2wkf.contra.com" },
-  { label: "WhatsApp", href: "https://wa.me/923138489149" },
-  { label: "Telegram", href: "https://t.me/JosephCryll" },
+  {
+    label: "Fiverr",
+    href: "https://www.fiverr.com/users/h2zeee",
+  },
+  {
+    label: "Upwork",
+    href: "https://www.upwork.com/freelancers/~01737e30133e047738",
+  },
+  {
+    label: "Contra",
+    href: "https://muhammadulhasnain6ttg2wkf.contra.com",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/923138489149",
+  },
+  {
+    label: "Telegram",
+    href: "https://t.me/JosephCryll",
+  },
 ];
 
 const HeroSection = () => {
@@ -50,7 +84,9 @@ const HeroSection = () => {
 
     const timeout = setTimeout(() => {
       setDisplayText((prev) =>
-        isDeleting ? prev.slice(0, -1) : currentTitle.slice(0, prev.length + 1)
+        isDeleting
+          ? prev.slice(0, -1)
+          : currentTitle.slice(0, prev.length + 1)
       );
     }, typeSpeed);
 
@@ -58,15 +94,17 @@ const HeroSection = () => {
   }, [displayText, isDeleting, titleIndex]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Background gradient orbs */}
-      <div data-parallax-bg="0.3" className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
-      <div data-parallax-bg="0.15" className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
 
       <div className="container-custom text-center z-10">
         {/* Profile Image */}
         <motion.div
-          data-hero-image
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -86,7 +124,6 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.h1
-          data-hero-title
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -97,7 +134,6 @@ const HeroSection = () => {
         </motion.h1>
 
         <motion.div
-          data-hero-subtitle
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -151,7 +187,7 @@ const HeroSection = () => {
           ))}
         </motion.div>
 
-        {/* Secondary Links */}
+        {/* Secondary Links (Fiverr, Upwork, WhatsApp) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -183,22 +219,28 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <MagneticButton
-            as="a"
+          <motion.a
             href="#contact"
-            className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl btn-glow relative overflow-hidden group inline-block"
-            strength={0.4}
+            className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl btn-glow relative overflow-hidden group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <span className="relative z-10">Get In Touch</span>
-          </MagneticButton>
-          <MagneticButton
-            as="a"
+            <motion.div
+              className="absolute inset-0 bg-accent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
+          <motion.a
             href="#experience"
-            className="px-8 py-4 glass-card border border-primary/30 text-foreground font-semibold rounded-xl hover:border-primary/60 transition-colors inline-block"
-            strength={0.4}
+            className="px-8 py-4 glass-card border border-primary/30 text-foreground font-semibold rounded-xl hover:border-primary/60 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             View My Work
-          </MagneticButton>
+          </motion.a>
         </motion.div>
 
         {/* Scroll indicator */}
