@@ -67,10 +67,11 @@ const SkillsSection = () => {
                     key={skill}
                     variants={itemVariants}
                     whileHover={{
-                      scale: 1.05,
-                      y: -3,
+                      scale: 1.1,
+                      y: -5,
+                      boxShadow: "0 0 20px hsl(var(--primary) / 0.4)",
                     }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ delay: catIndex * 0.1 + skillIndex * 0.05 }}
                     className="skill-tag cursor-default"
                   >
                     {skill}

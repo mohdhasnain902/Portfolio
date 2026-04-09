@@ -25,60 +25,65 @@ const ScrollAnimations = () => {
         });
       });
 
-      // --- Section subtle fade-in reveals (no 3D tilt) ---
+      // --- Section 3D perspective reveals ---
       gsap.utils.toArray<HTMLElement>("[data-scroll-section]").forEach((section) => {
+        // Subtle 3D tilt on scroll
         gsap.fromTo(
           section,
-          { opacity: 0.85, y: 30 },
+          { rotateX: 2, scale: 0.98, opacity: 0.8 },
           {
+            rotateX: 0,
+            scale: 1,
             opacity: 1,
-            y: 0,
             ease: "power2.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 90%",
-              end: "top 40%",
-              scrub: 1,
+              start: "top 85%",
+              end: "top 30%",
+              scrub: 0.5,
             },
           }
         );
       });
 
-      // --- Depth emergence for cards (subtle) ---
+      // --- Depth emergence for cards ---
       gsap.utils.toArray<HTMLElement>("[data-depth-card]").forEach((card, i) => {
         gsap.fromTo(
           card,
-          { opacity: 0, y: 40 },
+          { scale: 0.85, opacity: 0, filter: "blur(8px)", y: 60 },
           {
+            scale: 1,
             opacity: 1,
+            filter: "blur(0px)",
             y: 0,
             duration: 0.8,
-            ease: "power2.out",
+            ease: "power3.out",
             scrollTrigger: {
               trigger: card,
               start: "top 90%",
-              end: "top 60%",
+              end: "top 50%",
               toggleActions: "play none none none",
             },
-            delay: (i % 3) * 0.08,
+            delay: (i % 3) * 0.1,
           }
         );
       });
 
-      // --- Staggered slide-in for cards (subtle) ---
+      // --- Staggered slide-in for horizontal cards ---
       gsap.utils.toArray<HTMLElement>("[data-slide-card]").forEach((card, i) => {
-        const direction = i % 2 === 0 ? -30 : 30;
+        const direction = i % 2 === 0 ? -80 : 80;
         gsap.fromTo(
           card,
-          { x: direction, opacity: 0 },
+          { x: direction, opacity: 0, rotateY: direction > 0 ? -5 : 5 },
           {
             x: 0,
             opacity: 1,
-            duration: 0.7,
-            ease: "power2.out",
+            rotateY: 0,
+            duration: 0.8,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 88%",
+              start: "top 85%",
               toggleActions: "play none none none",
             },
           }
@@ -105,14 +110,15 @@ const ScrollAnimations = () => {
         });
       });
 
-      // --- Hero parallax text layers (very subtle) ---
+      // --- Hero parallax text layers ---
       const heroTitle = document.querySelector("[data-hero-title]");
       const heroSubtitle = document.querySelector("[data-hero-subtitle]");
+      const heroImage = document.querySelector("[data-hero-image]");
 
       if (heroTitle) {
         gsap.to(heroTitle, {
-          yPercent: -20,
-          opacity: 0.6,
+          yPercent: -60,
+          opacity: 0.3,
           ease: "none",
           scrollTrigger: {
             trigger: "#home",
@@ -125,8 +131,22 @@ const ScrollAnimations = () => {
 
       if (heroSubtitle) {
         gsap.to(heroSubtitle, {
-          yPercent: -10,
-          opacity: 0.7,
+          yPercent: -30,
+          opacity: 0.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#home",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+
+      if (heroImage) {
+        gsap.to(heroImage, {
+          yPercent: -15,
+          scale: 0.9,
           ease: "none",
           scrollTrigger: {
             trigger: "#home",

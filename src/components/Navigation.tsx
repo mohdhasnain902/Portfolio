@@ -64,11 +64,11 @@ const Navigation = () => {
           : "py-6 bg-transparent"
       }`}
     >
-      <div className="container-custom flex items-center justify-center relative">
+      <div className="container-custom flex items-center justify-between">
         <motion.a
           href="#home"
           onClick={(e) => handleNavClick(e, navLinks[0])}
-          className="absolute left-4 md:left-6 flex items-center gap-2"
+          className="flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -133,7 +133,7 @@ const Navigation = () => {
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute right-4 md:hidden p-2 text-foreground z-50"
+          className="md:hidden p-2 text-foreground z-50"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
