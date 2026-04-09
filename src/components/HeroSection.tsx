@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Instagram, ChevronDown, MapPin, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import profileImage from "@/assets/profile.jpg";
+import MagneticWrapper from "./MagneticWrapper";
 
 const titles = [
   "Full Stack Developer",
@@ -40,26 +41,11 @@ const socialLinks = [
 ];
 
 const secondaryLinks = [
-  {
-    label: "Fiverr",
-    href: "https://www.fiverr.com/users/h2zeee",
-  },
-  {
-    label: "Upwork",
-    href: "https://www.upwork.com/freelancers/~01737e30133e047738",
-  },
-  {
-    label: "Contra",
-    href: "https://muhammadulhasnain6ttg2wkf.contra.com",
-  },
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/923138489149",
-  },
-  {
-    label: "Telegram",
-    href: "https://t.me/JosephCryll",
-  },
+  { label: "Fiverr", href: "https://www.fiverr.com/users/h2zeee" },
+  { label: "Upwork", href: "https://www.upwork.com/freelancers/~01737e30133e047738" },
+  { label: "Contra", href: "https://muhammadulhasnain6ttg2wkf.contra.com" },
+  { label: "WhatsApp", href: "https://wa.me/923138489149" },
+  { label: "Telegram", href: "https://t.me/JosephCryll" },
 ];
 
 const HeroSection = () => {
@@ -98,12 +84,10 @@ const HeroSection = () => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      {/* Background gradient orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float-delayed" />
 
       <div className="container-custom text-center z-10">
-        {/* Profile Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -169,25 +153,26 @@ const HeroSection = () => {
           className="flex items-center justify-center gap-4 mb-6"
         >
           {socialLinks.map((link, index) => (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 glass-card-hover rounded-xl text-muted-foreground hover:text-primary"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9 + index * 0.1 }}
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={link.label}
-            >
-              <link.icon size={22} />
-            </motion.a>
+            <MagneticWrapper key={link.label} strength={0.4}>
+              <motion.a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 glass-card-hover rounded-xl text-muted-foreground hover:text-primary block"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.9 + index * 0.1 }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={link.label}
+              >
+                <link.icon size={22} />
+              </motion.a>
+            </MagneticWrapper>
           ))}
         </motion.div>
 
-        {/* Secondary Links (Fiverr, Upwork, WhatsApp) */}
+        {/* Secondary Links */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -195,20 +180,21 @@ const HeroSection = () => {
           className="flex items-center justify-center gap-3 mb-12 flex-wrap"
         >
           {secondaryLinks.map((link, index) => (
-            <motion.a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 text-sm font-medium glass-card border border-border/50 rounded-full text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.1 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {link.label}
-            </motion.a>
+            <MagneticWrapper key={link.label} strength={0.3}>
+              <motion.a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-sm font-medium glass-card border border-border/50 rounded-full text-muted-foreground hover:text-primary hover:border-primary/50 transition-all block"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.1 + index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {link.label}
+              </motion.a>
+            </MagneticWrapper>
           ))}
         </motion.div>
 
@@ -219,28 +205,32 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <motion.a
-            href="#contact"
-            className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl btn-glow relative overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="relative z-10">Get In Touch</span>
-            <motion.div
-              className="absolute inset-0 bg-accent"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
-          <motion.a
-            href="#experience"
-            className="px-8 py-4 glass-card border border-primary/30 text-foreground font-semibold rounded-xl hover:border-primary/60 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View My Work
-          </motion.a>
+          <MagneticWrapper strength={0.25}>
+            <motion.a
+              href="#contact"
+              className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl btn-glow relative overflow-hidden group block"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">Get In Touch</span>
+              <motion.div
+                className="absolute inset-0 bg-accent"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
+          </MagneticWrapper>
+          <MagneticWrapper strength={0.25}>
+            <motion.a
+              href="#experience"
+              className="px-8 py-4 glass-card border border-primary/30 text-foreground font-semibold rounded-xl hover:border-primary/60 transition-colors block"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View My Work
+            </motion.a>
+          </MagneticWrapper>
         </motion.div>
 
         {/* Scroll indicator */}

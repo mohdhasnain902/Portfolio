@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useMemo } from "react";
+import { useMemo } from "react";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 
-// Staggered entrance animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -26,10 +24,8 @@ const itemVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 15,
-      duration: 0.6,
+      duration: 1.2,
+      ease: [0.16, 1, 0.3, 1],
     },
   },
 };
@@ -137,10 +133,6 @@ const experiences = [
 ];
 
 const ExperienceSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  // Generate organic blob path for the decorative gradient
   const blobPath = useMemo(() => {
     const points = 8;
     const angleStep = (Math.PI * 2) / points;
@@ -169,14 +161,12 @@ const ExperienceSection = () => {
   }, []);
 
   return (
-    <section id="experience" className="section-padding relative overflow-hidden" ref={ref}>
-      {/* Background gradient orbs - matching Hero section style */}
+    <section id="experience" className="section-padding relative overflow-hidden">
       <div className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-primary/15 rounded-full blur-3xl animate-float pointer-events-none" />
       <div className="absolute top-1/2 -right-48 w-[450px] h-[450px] bg-accent/15 rounded-full blur-3xl animate-float-delayed pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
       
-      {/* Central decorative blob gradient */}
       <div 
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block"
         style={{ zIndex: 0 }}
@@ -205,8 +195,9 @@ const ExperienceSection = () => {
       <div className="container-custom relative" style={{ zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-16"
         >
           <span className="code-font text-primary text-sm tracking-wider">
@@ -218,14 +209,14 @@ const ExperienceSection = () => {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent md:-translate-x-1/2" />
 
           <motion.div 
             className="space-y-8"
             variants={containerVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
           >
             {experiences.map((exp, index) => (
               <motion.div
@@ -235,15 +226,14 @@ const ExperienceSection = () => {
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Timeline dot */}
                 <motion.div 
                   className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full md:-translate-x-1/2 mt-6 z-10 animate-glow-pulse"
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                  transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
                 />
 
-                {/* Content */}
                 <div
                   className={`ml-10 md:ml-0 md:w-1/2 ${
                     index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
