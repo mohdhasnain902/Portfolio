@@ -93,10 +93,6 @@ const EducationSection = () => {
                 <span>{edu.location}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
-                <Calendar size={14} />
-                <span>{edu.period}</span>
-              </div>
 
               {edu.grade && (
                 <div className="mt-4 pt-4 border-t border-border">
