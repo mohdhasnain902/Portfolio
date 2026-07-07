@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { GraduationCap, MapPin, ExternalLink } from "lucide-react";
 
 const education = [
   {
