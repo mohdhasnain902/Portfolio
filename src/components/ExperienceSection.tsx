@@ -309,8 +309,8 @@ const ExperienceSection = () => {
                         index % 2 === 0 ? "md:justify-end" : ""
                       }`}
                     >
-                      <Calendar size={14} />
-                      <span>{exp.period}</span>
+                      <Clock size={14} />
+                      <span>{getDuration(exp.period)}</span>
                     </div>
 
                     <p className="text-muted-foreground mb-4">
