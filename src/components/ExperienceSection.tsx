@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useMemo } from "react";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Clock, MapPin } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,6 +28,43 @@ const itemVariants = {
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
+};
+
+const monthMap: Record<string, number> = {
+  jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+  jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11,
+};
+
+const parseDate = (str: string): Date | null => {
+  const normalized = str.trim().toLowerCase();
+  if (normalized === "present") return new Date();
+  const parts = normalized.split(/\s+/);
+  if (parts.length !== 2) return null;
+  const month = monthMap[parts[0]];
+  const year = parseInt(parts[1], 10);
+  if (month === undefined || isNaN(year)) return null;
+  return new Date(year, month, 1);
+};
+
+const formatDuration = (start: Date, end: Date): string => {
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+  const parts: string[] = [];
+  if (years > 0) parts.push(`${years} yr${years > 1 ? "s" : ""}`);
+  if (months > 0) parts.push(`${months} mo${months > 1 ? "s" : ""}`);
+  return parts.length > 0 ? parts.join(" ") : "< 1 mo";
+};
+
+const getDuration = (period: string): string => {
+  const [startStr, endStr] = period.split(" - ");
+  const start = parseDate(startStr);
+  const end = parseDate(endStr || "present");
+  if (!start || !end) return period;
+  return formatDuration(start, end);
 };
 
 const experiences = [
@@ -272,8 +309,8 @@ const ExperienceSection = () => {
                         index % 2 === 0 ? "md:justify-end" : ""
                       }`}
                     >
-                      <Calendar size={14} />
-                      <span>{exp.period}</span>
+                      <Clock size={14} />
+                      <span>{getDuration(exp.period)}</span>
                     </div>
 
                     <p className="text-muted-foreground mb-4">

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { GraduationCap, MapPin, ExternalLink } from "lucide-react";
 
 const education = [
   {
@@ -93,10 +93,6 @@ const EducationSection = () => {
                 <span>{edu.location}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
-                <Calendar size={14} />
-                <span>{edu.period}</span>
-              </div>
 
               {edu.grade && (
                 <div className="mt-4 pt-4 border-t border-border">
