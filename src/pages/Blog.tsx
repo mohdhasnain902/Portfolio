@@ -6,9 +6,12 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import InteractiveNodes from "@/components/InteractiveNodes";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { blogPosts, blogCategories } from "@/data/blogPosts";
 
 const Blog = () => {
+  const isMobile = useIsMobile();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
@@ -37,11 +40,22 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEO
+        title="Blog | Insights on Trading Bots, AI, Web Dev — Muhammad Ul Hasnain"
+        description="Articles on cryptocurrency trading bots, AI automation, API development, web scraping, and modern full-stack development."
+        path="/blog"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Muhammad Ul Hasnain — Blog",
+          url: "/blog",
+        }}
+      />
       <ParticlesBackground />
-      <InteractiveNodes />
+      {!isMobile && <InteractiveNodes />}
       <Navigation />
 
-      <main className="pt-32 pb-20">
+      <main id="main-content" className="pt-32 pb-20">
         <div className="container-custom">
           {/* Hero Section */}
           <motion.div
@@ -176,6 +190,8 @@ const Blog = () => {
                       <img
                         src={post.featuredImage}
                         alt={post.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />

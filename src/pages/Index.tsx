@@ -11,14 +11,46 @@ import CertificationsSection from "@/components/CertificationsSection";
 import LanguagesSection from "@/components/LanguagesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEO
+        title="Muhammad Ul Hasnain | Python Developer & Trading Bot API Specialist"
+        description="Python Developer specializing in trading bot automation, cryptocurrency APIs (Binance, Bybit), web scraping, and full-stack development. Based in Islamabad, serving clients in Australia & USA."
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "Muhammad Ul Hasnain — Software Development",
+          areaServed: ["AU", "US", "PK", "Worldwide"],
+          serviceType: [
+            "Python Development",
+            "Trading Bot Development",
+            "API Development",
+            "Web Scraping",
+            "Full Stack Web Development",
+          ],
+          provider: {
+            "@type": "Person",
+            name: "Muhammad Ul Hasnain",
+            email: "muhammadulhasnain@gmail.com",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Islamabad",
+              addressCountry: "PK",
+            },
+          },
+        }}
+      />
       <ParticlesBackground />
-      <InteractiveNodes />
+      {!isMobile && <InteractiveNodes />}
       <Navigation />
-      <main>
+      <main id="main-content">
         <HeroSection />
         <AboutSection />
         <ServicesSection />

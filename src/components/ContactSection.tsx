@@ -63,21 +63,43 @@ const ContactSection = () => {
     name: "",
     email: "",
     message: "",
+    website: "", // honeypot
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot — silently drop bot submissions
+    if (formData.website) {
+      setFormData({ name: "", email: "", message: "", website: "" });
+      return;
+    }
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (name.length < 1 || name.length > 100) {
+      toast({ title: "Invalid name", description: "Name must be 1–100 characters.", variant: "destructive" });
+      return;
+    }
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email) || email.length > 255) {
+      toast({ title: "Invalid email", description: "Please enter a valid email address.", variant: "destructive" });
+      return;
+    }
+    if (message.length < 1 || message.length > 5000) {
+      toast({ title: "Invalid message", description: "Message must be 1–5000 characters.", variant: "destructive" });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const { error } = await supabase
         .from('contact_messages')
-        .insert({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          message: formData.message.trim(),
-        });
+        .insert({ name, email, message });
 
       if (error) throw error;
 
@@ -86,7 +108,7 @@ const ContactSection = () => {
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
 
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", website: "" });
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -201,6 +223,17 @@ const ContactSection = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="glass-card p-8"
           >
+            {/* Honeypot — hidden from users */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+              className="hidden"
+              aria-hidden="true"
+            />
             <div className="space-y-6">
               <div>
                 <label
@@ -280,6 +313,10 @@ const ContactSection = () => {
                   )}
                 </motion.button>
               </MagneticWrapper>
+              <p className="text-xs text-muted-foreground text-center">
+                By submitting, you agree to our{" "}
+                <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>.
+              </p>
             </div>
           </motion.form>
         </div>
