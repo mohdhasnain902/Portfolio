@@ -223,6 +223,17 @@ const ContactSection = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="glass-card p-8"
           >
+            {/* Honeypot — hidden from users */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+              className="hidden"
+              aria-hidden="true"
+            />
             <div className="space-y-6">
               <div>
                 <label
