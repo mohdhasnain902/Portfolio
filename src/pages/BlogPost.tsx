@@ -17,9 +17,12 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import InteractiveNodes from "@/components/InteractiveNodes";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { blogPosts } from "@/data/blogPosts";
 
 const BlogPost = () => {
+  const isMobile = useIsMobile();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [readingProgress, setReadingProgress] = useState(0);
@@ -191,8 +194,39 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEO
+        title={`${post.title} | Muhammad Ul Hasnain`}
+        description={post.metaDescription || post.excerpt}
+        path={`/blog/${post.slug}`}
+        image={post.featuredImage}
+        type="article"
+        publishedTime={post.publishedAt}
+        tags={post.tags}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description: post.metaDescription || post.excerpt,
+            image: post.featuredImage,
+            datePublished: post.publishedAt,
+            author: { "@type": "Person", name: "Muhammad Ul Hasnain" },
+            keywords: post.tags.join(", "),
+            articleSection: post.category,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "/blog" },
+              { "@type": "ListItem", position: 3, name: post.title, item: `/blog/${post.slug}` },
+            ],
+          },
+        ]}
+      />
       <ParticlesBackground />
-      <InteractiveNodes />
+      {!isMobile && <InteractiveNodes />}
       <Navigation />
 
       {/* Reading Progress Bar */}
@@ -261,6 +295,8 @@ const BlogPost = () => {
                 <img
                   src={post.featuredImage}
                   alt={post.title}
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
