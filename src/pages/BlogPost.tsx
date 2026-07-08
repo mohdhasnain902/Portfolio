@@ -237,7 +237,7 @@ const BlogPost = () => {
         />
       </div>
 
-      <main className="pt-32 pb-20">
+      <main id="main-content" className="pt-32 pb-20">
         <div className="container-custom">
           {/* Back Button */}
           <motion.div
