@@ -313,6 +313,10 @@ const ContactSection = () => {
                   )}
                 </motion.button>
               </MagneticWrapper>
+              <p className="text-xs text-muted-foreground text-center">
+                By submitting, you agree to our{" "}
+                <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>.
+              </p>
             </div>
           </motion.form>
         </div>
