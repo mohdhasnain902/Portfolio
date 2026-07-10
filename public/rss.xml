@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Muhammad Ul Hasnain — Blog</title>
+  <link>/blog</link>
+  <description>Articles on cryptocurrency trading bots, AI automation, API development, web scraping, and modern full-stack development.</description>
+  <language>en</language>
+  <lastBuildDate>Fri, 10 Jul 2026 13:22:56 GMT</lastBuildDate>
+  <atom:link href="/rss.xml" rel="self" type="application/rss+xml" />
+  <item>
+    <title>Web Scraping for Competitive Intelligence: Legal &amp; Effective Strategies for 2026</title>
+    <link>/blog/web-scraping-competitive-intelligence-legal-strategies-2026</link>
+    <guid isPermaLink="true">/blog/web-scraping-competitive-intelligence-legal-strategies-2026</guid>
+    <pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate>
+    <category>Data Science</category>
+    <description>Legal web scraping guide for Australian &amp; USA businesses. Learn Selenium, Beautiful Soup techniques for competitive intelligence while staying compliant.</description>
+  </item>
+  <item>
+    <title>Building a High-Converting E-commerce Website: A 2026 Guide for Australian and American Entrepreneurs</title>
+    <link>/blog/high-converting-ecommerce-website-guide-2026</link>
+    <guid isPermaLink="true">/blog/high-converting-ecommerce-website-guide-2026</guid>
+    <pubDate>Tue, 03 Feb 2026 00:00:00 GMT</pubDate>
+    <category>Web Development</category>
+    <description>Complete 2026 guide to building high-converting e-commerce websites for Australia &amp; USA. Platform comparison, payment integration, and conversion optimization strategies.</description>
+  </item>
+  <item>
+    <title>Personal Branding in 2026: Why Freelancers and Professionals Need a Portfolio Website</title>
+    <link>/blog/personal-branding-freelancers-portfolio-website-2026</link>
+    <guid isPermaLink="true">/blog/personal-branding-freelancers-portfolio-website-2026</guid>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+    <category>Web Development</category>
+    <description>Why freelancers and professionals need portfolio websites in 2026. Personal branding tips, essential features, and React portfolio development guide for Australia &amp; USA.</description>
+  </item>
+  <item>
+    <title>REST API Development: The Backbone of Modern Web Applications</title>
+    <link>/blog/rest-api-development-backbone-modern-web-applications</link>
+    <guid isPermaLink="true">/blog/rest-api-development-backbone-modern-web-applications</guid>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+    <category>API Development</category>
+    <description>Complete guide to REST API development with Django. Learn JWT authentication, database design &amp; API best practices for Australian &amp; USA businesses.</description>
+  </item>
+  <item>
+    <title>Google Maps Integration: Boost Your Local Business Visibility in 2026</title>
+    <link>/blog/google-maps-integration-local-business-2026</link>
+    <guid isPermaLink="true">/blog/google-maps-integration-local-business-2026</guid>
+    <pubDate>Wed, 28 Jan 2026 00:00:00 GMT</pubDate>
+    <category>Web Development</category>
+    <description>Complete guide to Google Maps API integration for local businesses in Australia &amp; USA. Store locators, directions, and local SEO strategies for 2026.</description>
+  </item>
+  <item>
+    <title>AI Automation: How American and Australian Businesses Can Save 20+ Hours Per Week</title>
+    <link>/blog/ai-automation-business-save-hours-weekly</link>
+    <guid isPermaLink="true">/blog/ai-automation-business-save-hours-weekly</guid>
+    <pubDate>Wed, 28 Jan 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Automation</category>
+    <description>Save 20+ hours weekly with AI automation. Guide for Australian &amp; USA businesses on implementing Gemini API, ChatGPT &amp; custom AI for real productivity gains.</description>
+  </item>
+  <item>
+    <title>Why Every Australian Small Business Needs a Professional Website in 2026</title>
+    <link>/blog/australian-small-business-professional-website-2026</link>
+    <guid isPermaLink="true">/blog/australian-small-business-professional-website-2026</guid>
+    <pubDate>Thu, 22 Jan 2026 00:00:00 GMT</pubDate>
+    <category>Web Development</category>
+    <description>Why Australian &amp; USA small businesses need professional websites in 2026. ROI data, essential features &amp; custom React development vs DIY builders compared.</description>
+  </item>
+  <item>
+    <title>How Automated Trading Bots Are Revolutionizing Cryptocurrency Trading in 2026</title>
+    <link>/blog/automated-trading-bots-revolutionizing-cryptocurrency-2026</link>
+    <guid isPermaLink="true">/blog/automated-trading-bots-revolutionizing-cryptocurrency-2026</guid>
+    <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+    <category>Trading Bot Development</category>
+    <description>Learn how crypto trading bots automate TradingView strategies on Bybit, Binance &amp; more. Complete guide to automated trading in 2026 for Australia &amp; USA traders.</description>
+  </item>
+</channel>
+</rss>
