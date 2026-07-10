@@ -379,7 +379,7 @@ const BlogPost = () => {
                     <span className="text-2xl font-bold text-primary">MUH</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Muhammad Usman</h4>
+                    <h4 className="font-semibold text-foreground">Muhammad Ul Hasnain</h4>
                     <p className="text-muted-foreground text-sm">
                       Full-stack developer specializing in trading automation, AI integration, and modern web development.
                     </p>
