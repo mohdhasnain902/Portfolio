@@ -1,0 +1,17 @@
+{
+  "name": "Muhammad Ul Hasnain — Portfolio",
+  "short_name": "MUH",
+  "description": "Python Developer, Trading Bot API Specialist, and Full Stack Engineer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1220",
+  "theme_color": "#0B1220",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

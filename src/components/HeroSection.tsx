@@ -139,11 +139,21 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex items-center justify-center gap-2 text-muted-foreground mb-8"
+          className="flex flex-wrap items-center justify-center gap-3 text-muted-foreground mb-8"
         >
-          <MapPin size={18} className="text-primary" />
-          <span>Islamabad, Pakistan</span>
+          <span className="inline-flex items-center gap-2">
+            <MapPin size={18} className="text-primary" />
+            Islamabad, Pakistan
+          </span>
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card border border-primary/30 text-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
+            <span className="text-foreground/90">Available for Q3 2026 projects</span>
+          </span>
         </motion.div>
+
 
         {/* Social Links */}
         <motion.div
