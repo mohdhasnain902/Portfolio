@@ -22,7 +22,7 @@ const CursorGlow = () => {
     <motion.div
       aria-hidden
       style={{ x: sx, y: sy }}
-      className="pointer-events-none fixed top-0 left-0 z-[50] h-[300px] w-[300px] rounded-full"
+      className="pointer-events-none fixed top-0 left-0 z-[6] h-[300px] w-[300px] rounded-full"
     >
       <div
         className="h-full w-full rounded-full opacity-40"
