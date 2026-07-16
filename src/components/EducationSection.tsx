@@ -10,7 +10,6 @@ const education = [
     location: "Islamabad, Pakistan",
     period: "Sep 2019 - Nov 2023",
     link: "https://cust.edu.pk/",
-    grade: null,
   },
   {
     degree: "FSc Pre-Engineering",
@@ -18,7 +17,6 @@ const education = [
     location: "Lahore, Pakistan",
     period: "2017 - 2018",
     link: null,
-    grade: "707/1100",
   },
   {
     degree: "Matriculation",
@@ -26,7 +24,6 @@ const education = [
     location: "Chakwal, Dhudlal, Pakistan",
     period: "2016 - 2017",
     link: null,
-    grade: "964/1100",
   },
 ];
 
@@ -94,12 +91,6 @@ const EducationSection = () => {
               </div>
 
 
-              {edu.grade && (
-                <div className="mt-4 pt-4 border-t border-border">
-                  <span className="text-sm text-muted-foreground">Grade: </span>
-                  <span className="text-primary font-semibold">{edu.grade}</span>
-                </div>
-              )}
             </motion.div>
           ))}
         </div>

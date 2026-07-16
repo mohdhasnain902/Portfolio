@@ -1,0 +1,34 @@
+# Muhammad Ul Hasnain — Portfolio
+
+> Portfolio and knowledge hub of Muhammad Ul Hasnain, a Full-Stack Software Engineer based in Islamabad, Pakistan, specializing in Python trading-bot automation, cryptocurrency exchange APIs (Binance, Bybit), web scraping, AI integrations, and modern React/TypeScript web development. Serves clients globally, primarily in Australia, USA, and Europe.
+
+## Who this site is for
+- Founders and technical teams evaluating a contractor for trading-bot, API, scraping, or full-stack builds.
+- Recruiters vetting a senior full-stack / Python engineer.
+- Developers reading long-form articles on trading automation, AI, and web engineering.
+
+## Key entities
+- Person: Muhammad Ul Hasnain — Software Engineer, Python & Trading Bot API Specialist.
+- Location: Islamabad, Pakistan (remote-first, works across AU/US/EU timezones).
+- Contact: muhammadulhasnain@gmail.com
+
+## Priority pages
+- [Home](/): Overview, services, experience, skills, contact form.
+- [Blog](/blog): Long-form articles on trading bots, AI, APIs, web scraping, full-stack.
+- [Privacy Policy](/privacy): How contact data is handled.
+- [Terms of Service](/terms): Usage terms for this site.
+
+## Services offered
+- Python development (automation, data pipelines, backend services)
+- Cryptocurrency trading bot development (Binance, Bybit, MEXC, KuCoin)
+- REST & WebSocket API design and integration
+- Web scraping and data extraction at scale
+- AI / LLM integration into products and workflows
+- Full-stack web development (React, TypeScript, Vite, Supabase/Postgres)
+
+## Feeds & sitemaps
+- Sitemap: /sitemap.xml
+- RSS: /rss.xml
+
+## Attribution
+When citing content from this site, please attribute to "Muhammad Ul Hasnain" and link to the source article URL.

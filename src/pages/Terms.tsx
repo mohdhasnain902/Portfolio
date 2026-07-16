@@ -8,6 +8,14 @@ const Terms = () => (
       title="Terms of Service | Muhammad Ul Hasnain"
       description="Terms governing use of this portfolio website and any services provided."
       path="/terms"
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "TermsOfService",
+        name: "Terms of Service",
+        url: "/terms",
+        inLanguage: "en",
+        publisher: { "@type": "Person", name: "Muhammad Ul Hasnain" },
+      }}
     />
     <Navigation />
     <main id="main-content" className="pt-32 pb-20">

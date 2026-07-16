@@ -8,6 +8,14 @@ const Privacy = () => (
       title="Privacy Policy | Muhammad Ul Hasnain"
       description="Privacy policy describing how personal data submitted through this portfolio is collected, used, and protected."
       path="/privacy"
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "PrivacyPolicy",
+        name: "Privacy Policy",
+        url: "/privacy",
+        inLanguage: "en",
+        publisher: { "@type": "Person", name: "Muhammad Ul Hasnain" },
+      }}
     />
     <Navigation />
     <main id="main-content" className="pt-32 pb-20">
