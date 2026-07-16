@@ -44,12 +44,44 @@ const Blog = () => {
         title="Blog | Insights on Trading Bots, AI, Web Dev — Muhammad Ul Hasnain"
         description="Articles on cryptocurrency trading bots, AI automation, API development, web scraping, and modern full-stack development."
         path="/blog"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Blog",
-          name: "Muhammad Ul Hasnain — Blog",
-          url: "/blog",
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "Muhammad Ul Hasnain — Blog",
+            url: "/blog",
+            description:
+              "Articles on cryptocurrency trading bots, AI automation, API development, web scraping, and modern full-stack development.",
+            inLanguage: "en",
+            about: [
+              "Trading Bots",
+              "Cryptocurrency APIs",
+              "AI Automation",
+              "Web Scraping",
+              "Full Stack Development",
+            ],
+            audience: {
+              "@type": "Audience",
+              audienceType: "Software engineers, founders, and technical teams",
+            },
+            author: { "@type": "Person", name: "Muhammad Ul Hasnain" },
+            blogPost: blogPosts.slice(0, 10).map((p) => ({
+              "@type": "BlogPosting",
+              headline: p.title,
+              url: `/blog/${p.slug}`,
+              datePublished: p.publishedAt,
+              keywords: p.tags.join(", "),
+            })),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "/blog" },
+            ],
+          },
+        ]}
       />
       <ParticlesBackground />
       {!isMobile && <InteractiveNodes />}

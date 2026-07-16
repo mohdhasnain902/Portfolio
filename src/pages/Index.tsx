@@ -29,29 +29,52 @@ const Index = () => {
         title="Muhammad Ul Hasnain | Python Developer & Trading Bot API Specialist"
         description="Python Developer specializing in trading bot automation, cryptocurrency APIs (Binance, Bybit), web scraping, and full-stack development. Based in Islamabad, serving clients in Australia & USA."
         path="/"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "Muhammad Ul Hasnain — Software Development",
-          areaServed: ["AU", "US", "PK", "Worldwide"],
-          serviceType: [
-            "Python Development",
-            "Trading Bot Development",
-            "API Development",
-            "Web Scraping",
-            "Full Stack Web Development",
-          ],
-          provider: {
-            "@type": "Person",
-            name: "Muhammad Ul Hasnain",
-            email: "muhammadulhasnain@gmail.com",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Islamabad",
-              addressCountry: "PK",
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: "Muhammad Ul Hasnain — Software Development",
+            url: "/",
+            description:
+              "Python trading-bot, cryptocurrency API, web scraping, AI, and full-stack development services for founders and technical teams worldwide.",
+            areaServed: ["AU", "US", "PK", "Worldwide"],
+            serviceType: [
+              "Python Development",
+              "Trading Bot Development",
+              "API Development",
+              "Web Scraping",
+              "AI Integration",
+              "Full Stack Web Development",
+            ],
+            provider: {
+              "@type": "Person",
+              name: "Muhammad Ul Hasnain",
+              jobTitle: "Full-Stack Software Engineer",
+              email: "muhammadulhasnain@gmail.com",
+              knowsAbout: [
+                "Python", "Django", "FastAPI", "Trading Bots",
+                "Binance API", "Bybit API", "Web Scraping",
+                "React", "TypeScript", "Supabase", "AI Integration",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Islamabad",
+                addressCountry: "PK",
+              },
+            },
+            audience: {
+              "@type": "Audience",
+              audienceType: "Founders, startups, and technical teams",
             },
           },
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Muhammad Ul Hasnain",
+            url: "/",
+            inLanguage: "en",
+          },
+        ]}
       />
       <ParticlesBackground />
       {!isMobile && <InteractiveNodes />}
