@@ -81,7 +81,7 @@ const Index = () => {
       <ParticlesBackground />
       {!isMobile && <InteractiveNodes />}
       {/* {!isMobile && <CursorGlow />} */}
-      {!isMobile && <ParticleCursor />}
+      {!isMobile && <SmokeCursor />}
       <ScrollProgress />
       <Vignette />
       <FilmGrain />
