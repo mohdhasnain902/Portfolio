@@ -18,7 +18,8 @@ import Vignette from "@/components/cinematic/Vignette";
 import ScrollProgress from "@/components/cinematic/ScrollProgress";
 import CinematicReveal from "@/components/cinematic/CinematicReveal";
 import SectionMarquee from "@/components/cinematic/SectionMarquee";
-import CursorGlow from "@/components/cinematic/CursorGlow";
+// import CursorGlow from "@/components/cinematic/CursorGlow"; // disabled: replaced by ParticleCursor. Uncomment to restore the bright radial glow follower.
+import ParticleCursor from "@/components/cinematic/ParticleCursor";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -78,7 +79,8 @@ const Index = () => {
       />
       <ParticlesBackground />
       {!isMobile && <InteractiveNodes />}
-      {!isMobile && <CursorGlow />}
+      {/* {!isMobile && <CursorGlow />} */}
+      {!isMobile && <ParticleCursor />}
       <ScrollProgress />
       <Vignette />
       <FilmGrain />
