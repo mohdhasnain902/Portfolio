@@ -18,7 +18,8 @@ const SmokeCursor = () => {
 
     (async () => {
       try {
-        const mod: any = await import("threejs-toys");
+        // @ts-expect-error - no type declarations for threejs-toys
+        const mod: any = await import("threejs-toys/build/threejs-toys.module.cdn.min.js");
         if (cancelled) return;
         instance = mod.neonCursor({
           el,
