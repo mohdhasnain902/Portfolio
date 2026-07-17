@@ -18,8 +18,9 @@ import Vignette from "@/components/cinematic/Vignette";
 import ScrollProgress from "@/components/cinematic/ScrollProgress";
 import CinematicReveal from "@/components/cinematic/CinematicReveal";
 import SectionMarquee from "@/components/cinematic/SectionMarquee";
-// import CursorGlow from "@/components/cinematic/CursorGlow"; // disabled: replaced by ParticleCursor. Uncomment to restore the bright radial glow follower.
-import ParticleCursor from "@/components/cinematic/ParticleCursor";
+// import CursorGlow from "@/components/cinematic/CursorGlow"; // disabled: replaced by SmokeCursor. Uncomment to restore the bright radial glow follower.
+// import ParticleCursor from "@/components/cinematic/ParticleCursor"; // disabled: replaced by SmokeCursor (volumetric holographic smoke trail).
+import SmokeCursor from "@/components/cinematic/SmokeCursor";
 
 const Index = () => {
   const isMobile = useIsMobile();
