@@ -67,6 +67,7 @@
     "tailwindcss-animate": "^1.0.7",
     "threejs-toys": "0.0.8",
     "vaul": "^0.9.9",
+    "webgl-fluid": "^0.4.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
