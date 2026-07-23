@@ -116,7 +116,13 @@ const FluidBackground = () => {
     if (!ctx) return;
     const gl: any = ctx.gl;
     const ext: any = ctx.ext;
-    if (isMobile()) config.SHADING = false;
+    if (isMobile()) {
+      config.SHADING = false;
+      config.SIM_RESOLUTION = 64;
+      config.DYE_RESOLUTION = 256;
+      config.PRESSURE_ITERATIONS = 8;
+      config.CURL = 15;
+    }
     if (!ext.supportLinearFiltering) {
       config.SHADING = false;
       config.BLOOM = false;
@@ -560,7 +566,7 @@ const FluidBackground = () => {
     let rafId: number | null = null;
     let idleTimeoutId: number | null = null;
     let lastInteractionTime = Date.now();
-    const IDLE_TIMEOUT = 2000;
+    const IDLE_TIMEOUT = isMobile() ? 800 : 2000;
 
     function resume() {
       lastInteractionTime = Date.now();
