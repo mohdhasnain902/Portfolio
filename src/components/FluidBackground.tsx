@@ -558,11 +558,16 @@ const FluidBackground = () => {
     }
 
     let rafId: number | null = null;
+    let idleTimeoutId: number | null = null;
     let lastInteractionTime = Date.now();
     const IDLE_TIMEOUT = 2000;
 
     function resume() {
       lastInteractionTime = Date.now();
+      if (idleTimeoutId != null) {
+        clearTimeout(idleTimeoutId);
+        idleTimeoutId = null;
+      }
       if (rafId == null) {
         rafId = requestAnimationFrame(update);
       }
@@ -574,6 +579,10 @@ const FluidBackground = () => {
       if (!config.PAUSED) step(0.016);
       render(null);
       if (Date.now() - lastInteractionTime > IDLE_TIMEOUT) {
+        idleTimeoutId = setTimeout(() => {
+          idleTimeoutId = null;
+          rafId = requestAnimationFrame(update);
+        }, 250);
         rafId = null;
         return;
       }
@@ -825,7 +834,6 @@ const FluidBackground = () => {
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
       resume();
       const t = e.touches[0];
       const p = pointers[0];
@@ -839,7 +847,6 @@ const FluidBackground = () => {
     };
 
     const onTouchStart = (e: TouchEvent) => {
-      e.preventDefault();
       resume();
       const t = e.touches[0];
       const p = pointers[0];
@@ -868,8 +875,8 @@ const FluidBackground = () => {
 
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
-    window.addEventListener('touchstart', onTouchStart, { passive: false });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
 
     initFramebuffers();
     bootBurst(20);
@@ -877,6 +884,7 @@ const FluidBackground = () => {
 
     return () => {
       if (rafId != null) cancelAnimationFrame(rafId);
+      if (idleTimeoutId != null) clearTimeout(idleTimeoutId);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('touchmove', onTouchMove);
