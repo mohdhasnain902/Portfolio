@@ -58,8 +58,9 @@ const InteractiveNodes = () => {
 
     const now = Date.now();
 
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Fill dark background, then clear for transparent overlay
+    ctx.fillStyle = '#0a0a12';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Filter expired nodes and update opacity
     nodesRef.current = nodesRef.current.filter((node) => {
@@ -193,7 +194,7 @@ const InteractiveNodes = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 1 }}
+      style={{ zIndex: 0 }}
     />
   );
 };

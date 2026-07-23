@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Search, Calendar, Clock, ArrowRight, Tag, Filter } from "lucide-react";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import InteractiveNodes from "@/components/InteractiveNodes";
+// import InteractiveNodes from "@/components/InteractiveNodes";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -39,7 +39,7 @@ const Blog = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden">
       <SEO
         title="Blog | Insights on Trading Bots, AI, Web Dev — Muhammad Ul Hasnain"
         description="Articles on cryptocurrency trading bots, AI automation, API development, web scraping, and modern full-stack development."
@@ -83,8 +83,8 @@ const Blog = () => {
           },
         ]}
       />
-      <ParticlesBackground />
-      {!isMobile && <InteractiveNodes />}
+      {/* <ParticlesBackground /> */}
+      {/* {!isMobile && <InteractiveNodes />} */}
       <Navigation />
 
       <main id="main-content" className="pt-32 pb-20">

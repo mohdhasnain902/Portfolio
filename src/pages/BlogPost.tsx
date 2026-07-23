@@ -14,7 +14,7 @@ import {
   BookOpen
 } from "lucide-react";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import InteractiveNodes from "@/components/InteractiveNodes";
+// import InteractiveNodes from "@/components/InteractiveNodes";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -225,8 +225,8 @@ const BlogPost = () => {
           },
         ]}
       />
-      <ParticlesBackground />
-      {!isMobile && <InteractiveNodes />}
+      {/* <ParticlesBackground /> */}
+      {/* {!isMobile && <InteractiveNodes />} */}
       <Navigation />
 
       {/* Reading Progress Bar */}

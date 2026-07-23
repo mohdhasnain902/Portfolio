@@ -1,5 +1,5 @@
 import ParticlesBackground from "@/components/ParticlesBackground";
-import InteractiveNodes from "@/components/InteractiveNodes";
+// import InteractiveNodes from "@/components/InteractiveNodes";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -19,14 +19,13 @@ import ScrollProgress from "@/components/cinematic/ScrollProgress";
 import CinematicReveal from "@/components/cinematic/CinematicReveal";
 import SectionMarquee from "@/components/cinematic/SectionMarquee";
 // import CursorGlow from "@/components/cinematic/CursorGlow"; // disabled: replaced by SmokeCursor. Uncomment to restore the bright radial glow follower.
-// import ParticleCursor from "@/components/cinematic/ParticleCursor"; // disabled: replaced by SmokeCursor (volumetric holographic smoke trail).
-import SmokeCursor from "@/components/cinematic/SmokeCursor";
+// import SmokeCursor from "@/components/cinematic/SmokeCursor"; // disabled: replaced by global FluidBackground.
 
 const Index = () => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden">
       <SEO
         title="Muhammad Ul Hasnain | Python Developer & Trading Bot API Specialist"
         description="Python Developer specializing in trading bot automation, cryptocurrency APIs (Binance, Bybit), web scraping, and full-stack development. Based in Islamabad, serving clients in Australia & USA."
@@ -78,10 +77,10 @@ const Index = () => {
           },
         ]}
       />
-      <ParticlesBackground />
-      {!isMobile && <InteractiveNodes />}
+      {/* <ParticlesBackground /> */}
+      {/* {!isMobile && <InteractiveNodes />} */}
       {/* {!isMobile && <CursorGlow />} */}
-      {!isMobile && <SmokeCursor />}
+      {/* {!isMobile && <SmokeCursor />} */}
       <ScrollProgress />
       <Vignette />
       <FilmGrain />

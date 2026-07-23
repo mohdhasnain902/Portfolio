@@ -64,11 +64,11 @@ const Navigation = () => {
           : "py-6 bg-transparent"
       }`}
     >
-      <div className="container-custom flex items-center justify-between">
+      <div className="container-custom flex items-center relative">
         <motion.a
           href="#home"
           onClick={(e) => handleNavClick(e, navLinks[0])}
-          className="flex items-center gap-2"
+          className="absolute left-0 flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -96,7 +96,7 @@ const Navigation = () => {
         </motion.a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 mx-auto">
           {navLinks.map((link, index) => (
             link.isHash ? (
               <motion.a
@@ -133,7 +133,7 @@ const Navigation = () => {
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-foreground z-50"
+          className="md:hidden absolute right-0 p-2 text-foreground z-50"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
